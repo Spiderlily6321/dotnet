@@ -1,0 +1,71 @@
+steps:
+
+1. File > New Project > Console Application.
+2. Give a name "Palindrome"
+3.Go to Pages Folder > index.cshtml
+4. Code for index.cshtml :
+
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "LINQ to Ado.Net demo";
+}
+
+<h2>LINQ to Ado.Net demo</h2>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Job</th>
+    </tr>
+    @foreach (var emp in Model.Employees)
+    {
+        <tr>
+            <td>@emp.Name</td>
+            <td>@emp.Salary</td>
+            <td>@emp.Job</td>
+        </tr>
+    }
+</table>
+
+
+3. index.cshtml.cs:
+
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
+public class IndexModel : PageModel
+{
+    public List<Employee> Employees { get; set; }
+
+    public void OnGet()
+    {
+        // Step 1: Create a DataTable
+        DataTable dt = new DataTable();
+        dt.Columns.Add("Name", typeof(string));
+        dt.Columns.Add("Salary", typeof(double));
+        dt.Columns.Add("Job", typeof(string));
+
+        // Step 2: Add one row just like in the screenshot
+        dt.Rows.Add("Suresh", 120000, "Software Designer");
+
+        // Step 3: Use LINQ to read the data
+        Employees = (from row in dt.AsEnumerable()
+                     select new Employee
+                     {
+                         Name = row.Field<string>("Name"),
+                         Salary = row.Field<double>("Salary"),
+                         Job = row.Field<string>("Job")
+                     }).ToList();
+    }
+
+    public class Employee
+    {
+        public string Name { get; set; }
+        public double Salary { get; set; }
+        public string Job { get; set; }
+    }
+}
