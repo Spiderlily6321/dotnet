@@ -1,0 +1,75 @@
+steps:
+
+1. File > New Project > Console Application.
+2. Give a name "Palindrome"
+3.Go to Pages Folder > index.cshtml
+4. Code for index.cshtml :
+
+@page
+@model palindrome.Pages.IndexModel
+@{
+    ViewData["Title"] = "Palindrome Check";
+}
+
+<div style="width: 500px; margin: 40px auto; font-family: 'Book Antiqua';">
+    <form method="post">
+        <label for="getnum" style="font-size: large;">Enter a Number&nbsp;</label>
+        <input id="getnum" asp-for="InputNumber" style="height: 35px; width: 245px; font-size: medium;" />
+        <br /><br />
+
+        @if (Model.Message != null)
+        {
+            <p id="lbldisplay" style="font-weight: bold; color: #000066; font-size: x-large;">@Model.Message</p>
+        }
+
+        <br />
+        <input type="submit" value="Check for Palindrome!" style="font-weight: bold; font-size: medium; height: 42px; width: 200px;" />
+    </form>
+</div>
+
+5. Code for index.cshtml.cs:
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace palindrome.Pages
+{
+    public class IndexModel : PageModel
+    {
+        [BindProperty]
+        public string InputNumber { get; set; }
+
+        public string Message { get; set; }
+
+        public void OnGet()
+        {
+        }
+
+        public void OnPost()
+        {
+            if (int.TryParse(InputNumber, out int n))
+            {
+                int temp = n;
+                int sum = 0;
+                while (n > 0)
+                {
+                    int r = n % 10;
+                    sum = (sum * 10) + r;
+                    n = n / 10;
+                }
+
+                if (temp == sum)
+                    Message = "Number is Palindrome!!";
+                else
+                    Message = "Number is not Palindrome";
+            }
+            else
+            {
+                Message = "Please enter a valid integer number.";
+            }
+        }
+    }
+}
+
+
+6. Run the program
