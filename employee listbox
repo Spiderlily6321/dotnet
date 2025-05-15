@@ -1,0 +1,96 @@
+steps:
+
+1. File > New Project > Console Application.
+2. Give a name "employee listbox"
+3.Go to Pages Folder > index.cshtml
+4. Code for index.cshtml :
+@page
+@model IndexModel
+
+<h2>Practical 2.4 - Employee List</h2>
+
+<form method="post">
+    <label><b>Employees in the Organization:</b></label><br />
+    <select asp-for="SelectedEmployees"
+            asp-items="Model.EmployeeList"
+            multiple
+            size="6"
+            style="width: 200px;"></select>
+    <br /><br />
+
+    <button type="submit" asp-page-handler="AddSelected">Add Employee</button>
+    <br /><br />
+
+    <textarea rows="8"
+              style="width: 280px; height: 110px; font-family: Arial; font-size: 14px;"
+              readonly>@Model.DisplayText</textarea>
+</form>
+
+
+
+3. code for index.cshtml.cs:
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Text;
+
+public class IndexModel : PageModel
+{
+    [BindProperty]
+    public List<string> SelectedEmployees { get; set; } = new();
+
+    public List<SelectListItem> EmployeeList { get; set; } = new();
+
+    public string DisplayText { get; set; } = "";
+
+    public void OnGet()
+    {
+        LoadEmployees();
+
+        // If TempData has saved output, show it
+        if (TempData.ContainsKey("Output"))
+        {
+            DisplayText = TempData["Output"] as string;
+        }
+    }
+
+    public IActionResult OnPostAddSelected()
+    {
+        LoadEmployees();
+
+        if (SelectedEmployees == null || SelectedEmployees.Count == 0)
+        {
+            TempData["Output"] = "No employees selected.";
+        }
+        else
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("The Selected Employees are:\n");
+
+            foreach (var emp in SelectedEmployees)
+            {
+                sb.AppendLine("- " + emp);
+            }
+
+            TempData["Output"] = sb.ToString();
+        }
+
+        // Redirect to GET to avoid form resubmission and retain state
+        return RedirectToPage();
+    }
+
+    private void LoadEmployees()
+    {
+        EmployeeList = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "ABC", Value = "ABC" },
+            new SelectListItem { Text = "EFG", Value = "EFG" },
+            new SelectListItem { Text = "HIJ", Value = "HIJ" },
+            new SelectListItem { Text = "KLM", Value = "KLM" },
+            new SelectListItem { Text = "XYZ", Value = "XYZ" }
+        };
+    }
+}
+
