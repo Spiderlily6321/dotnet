@@ -1,0 +1,48 @@
+File > New Project > Concole Application 
+
+1. Program.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        { 
+            ConstDemo c = new ConstDemo();
+            c.Salary();
+            Console.ReadKey();
+        }
+    }
+}
+
+2. Right click on proj name > add > new file >  general > Empty Class and name that "ConstDemo.cs"
+
+code for constdemo.cs:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplication2
+{
+    public class ConstDemo
+    {
+        double basic, ta, da, hra;
+        double total;
+        public ConstDemo()
+        {
+            basic = 4000.00;
+            ta = 5000.00;
+            da = 2500.50;
+            hra = 3000;
+        }
+        public void Salary()
+        {
+            total = basic + ta + da + hra;
+            Console.WriteLine("Your Final Salary is " + total);
+        }
+    }
+}
