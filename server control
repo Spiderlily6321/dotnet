@@ -1,0 +1,28 @@
+
+steps:
+
+1. File > New Project > Console Application.
+2. Give a name "server controls"
+3.Go to Pages Folder > index.cshtml
+
+4. Code for index.cshtml :
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Homepage";
+}
+
+<div>
+    <img src="~/images/amity-logo.jpg" alt="Amity University Logo" style="max-width: 200px;" />
+</div>
+
+<nav style="margin-top: 20px;">
+    <ul style="list-style: none; display: flex; gap: 20px; padding: 0;">
+        <li><a asp-page="/GridviewDemo">Gridview Demo</a></li>
+        <li><a asp-page="/LinqDemo">LINQ Demo</a></li>
+        <li><a asp-page="/Login">Login</a></li>
+    </ul>
+</nav>
+
+5. Go to wwwroot folder > Right click > make new folder and name it add "Images" 
+6. Right click on Images folder > Add > Exsisting File  > select "amity-logo.jpg" 
