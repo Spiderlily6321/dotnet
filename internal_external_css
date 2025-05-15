@@ -1,0 +1,63 @@
+steps:
+
+1. File > New Project > Console Application.
+2. Give a name "Palindrome"
+3.Go to Pages Folder > index.cshtml
+4. Code for index.cshtml :
+
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+
+<style>
+    .text-box {
+        background-color: fuchsia;
+        border: 2px solid black;
+        font-family: 'Arial';
+        padding: 10px;
+        color: white;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        background-color: darkblue;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+
+<h2>Employees in the Organization</h2>
+
+<select id="employeeList" multiple size="5">
+    <option>Mr. Peter Parker</option>
+    <option>Scot</option>
+    <option>Tom Holland</option>
+    <option>Steve Rogers</option>
+    <option>Robert DJr.</option>
+</select>
+
+<br />
+
+<button class="btn" onclick="showEmployees()">Add Employee</button>
+
+<br />
+<br />
+
+<textarea id="employeeOutput" class="text-box" rows="6" cols="40" readonly></textarea>
+
+<script>function showEmployees() {
+        const list = document.querySelectorAll('#employeeList option:checked');
+        let text = "The Selected Employees are:\n\n";
+        list.forEach(item => {
+            text += item.text + "\n";
+        });
+        document.getElementById('employeeOutput').value = text;
+    }</script>
+
+
+5. run the application
