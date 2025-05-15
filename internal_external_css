@@ -4,60 +4,56 @@ steps:
 2. Give a name "Palindrome"
 3.Go to Pages Folder > index.cshtml
 4. Code for index.cshtml :
-
 @page
 @model IndexModel
-@{
-    ViewData["Title"] = "Employee List";
-}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Amity University</title>
+    <style>
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: navy;
+            text-align: center;
+        }
+
+        .description {
+            font-size: 24px;
+            color: purple;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+            .logo-container img {
+                height: 100px;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="/images/amity-logo.jpg" alt="Amity Logo" />
+        <div class="main-title">Amity University, Mumbai</div>
+    </div>
+
+    <div class="description">
+        Amity University, Mumbai is situated in Bhatan, Panvel offers a variety of courses in Applied Sciences, I.T, Fashion Technology and many others.
+    </div>
+
+</body>
+</html>
 
 
-<style>
-    .text-box {
-        background-color: fuchsia;
-        border: 2px solid black;
-        font-family: 'Arial';
-        padding: 10px;
-        color: white;
-    }
+5. Go to wwwroot folder > Right click > make new folder and name it add "Images" 
+6. Right click on Images folder > Add > Exsisting File  > select "amity-logo.jpg" 
 
-    .btn {
-        padding: 10px 20px;
-        background-color: darkblue;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin-top: 10px;
-    }
-</style>
-
-<h2>Employees in the Organization</h2>
-
-<select id="employeeList" multiple size="5">
-    <option>Mr. Peter Parker</option>
-    <option>Scot</option>
-    <option>Tom Holland</option>
-    <option>Steve Rogers</option>
-    <option>Robert DJr.</option>
-</select>
-
-<br />
-
-<button class="btn" onclick="showEmployees()">Add Employee</button>
-
-<br />
-<br />
-
-<textarea id="employeeOutput" class="text-box" rows="6" cols="40" readonly></textarea>
-
-<script>function showEmployees() {
-        const list = document.querySelectorAll('#employeeList option:checked');
-        let text = "The Selected Employees are:\n\n";
-        list.forEach(item => {
-            text += item.text + "\n";
-        });
-        document.getElementById('employeeOutput').value = text;
-    }</script>
-
-
-5. run the application
+7. run the file
