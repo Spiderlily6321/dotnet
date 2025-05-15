@@ -1,0 +1,82 @@
+steps:
+
+1. File > New Project > Console Application.
+2. Give a name "Practical"
+3.Go to Pages Folder > index.cshtml
+4. Code for index.cshtml :
+
+@page
+@model IndexModel
+
+<h2>Practical 2.3</h2>
+
+<form method="post">
+    <label>Enter Your Name:</label>
+    <input asp-for="UserName" />
+    <br /><br />
+
+    <label>Enter Your Message:</label>
+    <textarea asp-for="UserMessage"></textarea>
+    <br /><br />
+
+    <label>Select the Font Color:</label>
+    <select asp-for="TextColor">
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+        <option>Yellow</option>
+    </select>
+    <br /><br />
+
+    <label>Select the Formatting:</label><br />
+    <input type="checkbox" asp-for="IsBold" /> Bold
+    <input type="checkbox" asp-for="IsItalic" /> Italic
+    <input type="checkbox" asp-for="IsUnderline" /> Underline
+    <br /><br />
+
+    <button type="submit" name="action" value="display">Display</button>
+    <button type="submit" name="action" value="clear">Clear</button>
+</form>
+
+@if (Model.DisplayMessage != null)
+{
+    <p style="
+        color:@Model.TextColor.ToLower();
+        font-weight:@(Model.IsBold ? "bold" : "normal");
+        font-style:@(Model.IsItalic ? "italic" : "normal");
+        text-decoration:@(Model.IsUnderline ? "underline" : "none");">
+        @Model.DisplayMessage
+    </p>
+}
+
+
+5. index.cshtml.cs:
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+public class IndexModel : PageModel
+{
+    [BindProperty] public string UserName { get; set; }
+    [BindProperty] public string UserMessage { get; set; }
+    [BindProperty] public string TextColor { get; set; } = "Black";
+    [BindProperty] public bool IsBold { get; set; }
+    [BindProperty] public bool IsItalic { get; set; }
+    [BindProperty] public bool IsUnderline { get; set; }
+
+    public string DisplayMessage { get; set; }
+
+    public void OnPost(string action)
+    {
+        if (action == "display")
+        {
+            DisplayMessage = $"Your Name is: {UserName}, and your Message is: {UserMessage}";
+        }
+        else if (action == "clear")
+        {
+            UserName = UserMessage = DisplayMessage = "";
+            TextColor = "Black";
+            IsBold = IsItalic = IsUnderline = false;
+        }
+    }
+}
