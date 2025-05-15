@@ -1,3 +1,6 @@
+File > New Project > Console Application
+
+ 
 Program.cs:
 
 using System;
