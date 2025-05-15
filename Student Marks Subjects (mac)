@@ -1,0 +1,84 @@
+File > New Project > Console Application #C
+
+1. Program.cs:
+using System;
+using ConsoleApplication2;
+using ConsoleApplication3;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Student s = new Student();
+            s.Grades();
+            Console.ReadKey();
+        }
+    }
+}
+
+
+2. Right click on proj name > add > new file > General > Empty class and name it as "Animal.cs"
+
+Student.cs code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplication2
+{
+    public class Student
+    {
+        public void Grades()
+        {
+            int cpp, java, os, devop, linux;
+            double total, per;
+
+            Console.WriteLine("Enter the Marks in C#: ");
+            cpp = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the Marks in Java: ");
+            java = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the Marks in Operating System: ");
+            os = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the Marks in devop: ");
+            devop = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the Marks in linux: ");
+            linux = Convert.ToInt32(Console.ReadLine());
+
+            total = cpp + java + os + devop + linux;
+
+            // Cast to double to ensure floating-point division
+            per = (total / 500.0) * 100.0;
+
+            Console.WriteLine("The Percentage is : " + per.ToString("F2"));
+
+            if (per >= 75)
+            {
+                Console.WriteLine("Your Grade is : DISTINCTION");
+            }
+            else if (per >= 60)
+            {
+                Console.WriteLine("Your Grade is : First Class");
+            }
+            else if (per >= 50)
+            {
+                Console.WriteLine("Your Grade is : Second Class");
+            }
+            else if (per >= 40)
+            {
+                Console.WriteLine("Your Grade is : Pass Class");
+            }
+            else
+            {
+                Console.WriteLine("You are Failed!!!");
+            }
+        }
+
+    }
+}
