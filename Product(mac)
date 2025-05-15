@@ -1,0 +1,41 @@
+Program.cs:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Practical_1
+{
+    class MyClass
+    {
+        public void Election()
+        {
+            Console.WriteLine("Election method called from MyClass.");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyClass x = new MyClass();
+            x.Election();
+
+            int a, b, c, d, e;
+            Console.WriteLine("Enter First Number :");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Second Number :");
+            b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Third Number :");
+            c = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Fourth Number :");
+            d = Convert.ToInt32(Console.ReadLine());
+
+            e = a * b * c * d;
+            Console.WriteLine("Practical No. 1");
+            Console.WriteLine("Product of " + a + ", " + b + ", " + c + ", " + d + " is " + e);
+            Console.ReadKey();
+        }
+    }
+}
