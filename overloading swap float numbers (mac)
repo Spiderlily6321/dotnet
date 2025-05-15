@@ -1,0 +1,54 @@
+File > New Project > Console Application #C
+
+1. Program.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Swapping integers
+            OverloadingDemo o = new OverloadingDemo();
+            int x = 10, y = 20;
+            Console.WriteLine("Before swap: x = " + x + " y = " + y);
+            o.Swap(ref x, ref y);
+            Console.WriteLine("After swap: x = " + x + " y = " + y);
+            // Swapping floats
+            float a = 1.5f, b = 2.5f;
+            Console.WriteLine("Before swap: a = " + a + " b = " + b);
+            o.Swap(ref a, ref b);
+            Console.WriteLine("After swap: a = " + a + " b = " + b);
+            Console.ReadKey();
+        }
+    }
+}
+
+2. Right click on proj name > add > new file > General > Empty class and name it as "OverloadingDemo.cs"
+
+Code:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplication2
+{
+    public class OverloadingDemo
+    {
+        public void Swap(ref int a, ref int b)
+        {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        public void Swap(ref float x, ref float y)
+        {
+            float temp = x;
+            x = y;
+            y = temp;
+        }
+    }
+}
