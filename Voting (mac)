@@ -1,0 +1,44 @@
+File > New Project > Console Application #C
+
+1. Program.cs:
+using System;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyClass x = new MyClass();
+            x.Election();
+
+            Console.ReadKey();
+        }
+    }
+}
+
+2. MyClass.cs:
+
+using System;
+
+namespace ConsoleApplication3   
+{
+    public class MyClass
+    {
+        public void Election()
+        {
+            int age;
+            Console.Write("Enter Your Age: ");
+            age = Convert.ToInt32(Console.ReadLine());  
+
+            if (age >= 18)
+            {
+                Console.WriteLine("You are Eligible to Vote!!");
+            }
+            else
+            {
+                Console.WriteLine("You are NOT Eligible to Vote!!");
+            }
+        }
+    }
+}
